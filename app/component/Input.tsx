@@ -10,9 +10,10 @@ export const Input = ({
   const [todo, setTodo] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  console.log(isFocused);
 
   // Track mouse position
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePosition({
       x: e.clientX - rect.left,
@@ -21,7 +22,7 @@ export const Input = ({
   };
 
   // Calculate movement based on mouse position
-  const calculateMovement = () => {
+  const calculateMovement = (): { x: number; y: number } => {
     if (!mousePosition) return { x: 0, y: 0 };
 
     // Calculate distance from center
